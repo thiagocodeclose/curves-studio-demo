@@ -2,6 +2,7 @@
 import type { Metadata } from 'next';
 import { Nunito, Nunito_Sans } from 'next/font/google';
 import './globals.css';
+import { getKorivaConfig, buildCssVars } from '@/lib/koriva-config';
 
 const nunito = Nunito({
   subsets: ['latin'],
@@ -22,9 +23,11 @@ export const metadata: Metadata = {
   description: 'Women\'s fitness community in Nashville. HIIT, strength, dance, and more. Strong is the new beautiful.',
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default async function RootLayout({ children }: { children: React.ReactNode }) {
+  const cfg = await getKorivaConfig();
+  const vars = buildCssVars(cfg?.brand);
   return (
-    <html lang="en">
+    <html lang="en" style={vars as React.CSSProperties}>
       <body className={`${nunito.variable} ${nunitoSans.variable}`}>{children}</body>
     </html>
   );
