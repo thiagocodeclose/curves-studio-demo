@@ -4,6 +4,7 @@ import { Nunito, Nunito_Sans } from 'next/font/google';
 import './globals.css';
 import { getKorivaConfig, buildCssVars } from '@/lib/koriva-config';
 
+import { KorivaLivePreview } from '@/components/KorivaLivePreview';
 const nunito = Nunito({
   subsets: ['latin'],
   weight: ['300', '400', '600', '700', '800'],
@@ -28,7 +29,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
   const vars = buildCssVars(cfg?.brand);
   return (
     <html lang="en" style={vars as React.CSSProperties}>
-      <body className={`${nunito.variable} ${nunitoSans.variable}`}>{children}</body>
+      <body className={`${nunito.variable} ${nunitoSans.variable}`}>{children}<KorivaLivePreview /></body>
     </html>
   );
 }
