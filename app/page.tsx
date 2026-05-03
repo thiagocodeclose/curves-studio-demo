@@ -170,10 +170,10 @@ export default function CurvesPage() {
         <div className="cv-hero-content">
           <div className="cv-hero-pill">Nashville's #1 Women's Studio</div>
           <h1 data-cg-el="hero_headline_1" className="cv-hero-title">Strong is<br />the new<br /><em>beautiful.</em></h1>
-          <p className="cv-hero-sub">A fitness community built for every body. HIIT, strength, dance, and more — in a space where you'll feel celebrated, not judged.</p>
+          <p data-cg-el="hero_subtitle" className="cv-hero-sub">A fitness community built for every body. HIIT, strength, dance, and more — in a space where you'll feel celebrated, not judged.</p>
           <div className="cv-hero-actions">
-            <button className="cv-btn-primary">Start Free Week</button>
-            <button className="cv-btn-ghost">See All Classes</button>
+            <button data-cg-el="hero_cta_primary" className="cv-btn-primary">Start Free Week</button>
+            <button data-cg-el="hero_cta_secondary" className="cv-btn-ghost">See All Classes</button>
           </div>
         </div>
       </section>
