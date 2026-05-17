@@ -261,7 +261,7 @@ export default function CurvesPage() {
           <div className="cv-footer-logo">Curves<span>&</span>Co</div>
           <div className="cv-footer-info">{d.gym.address}<br />{d.gym.phone} · {d.gym.email}</div>
         </div>
-        <div className="cv-footer-copy">© {new Date().getFullYear()} {d.gym.name}. Powered by Koriva.</div>
+        <div className="cv-footer-copy">© {new Date().getFullYear()} {d.gym.name}. Powered by Garrison365.</div>
       </footer>
     </>
   );
