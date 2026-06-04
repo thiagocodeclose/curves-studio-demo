@@ -1,7 +1,7 @@
 // @ts-nocheck
-'use client';
-import { useEffect, useState } from 'react';
-import { siteData } from '@/lib/site-data';
+"use client";
+import { useEffect, useState } from "react";
+import { siteData } from "@/lib/site-data";
 
 const css = `
   :root {
@@ -127,10 +127,18 @@ const css = `
 
 function useReveal() {
   useEffect(() => {
-    const els = document.querySelectorAll('.reveal');
-    const io = new IntersectionObserver((e) => {
-      e.forEach((x) => { if (x.isIntersecting) { x.target.classList.add('visible'); io.unobserve(x.target); } });
-    }, { threshold: 0.1 });
+    const els = document.querySelectorAll(".reveal");
+    const io = new IntersectionObserver(
+      (e) => {
+        e.forEach((x) => {
+          if (x.isIntersecting) {
+            x.target.classList.add("visible");
+            io.unobserve(x.target);
+          }
+        });
+      },
+      { threshold: 0.1 },
+    );
     els.forEach((el) => io.observe(el));
     return () => io.disconnect();
   }, []);
@@ -143,37 +151,84 @@ export default function CurvesPage() {
 
   useEffect(() => {
     const fn = () => setScrolled(window.scrollY > 50);
-    window.addEventListener('scroll', fn);
-    return () => window.removeEventListener('scroll', fn);
+    window.addEventListener("scroll", fn);
+    return () => window.removeEventListener("scroll", fn);
   }, []);
 
   return (
     <>
       <style>{css}</style>
 
-      <nav className={`cv-nav${scrolled ? ' scrolled' : ''}`}>
-        <a href="#" className="cv-logo">Curves<span>&</span>Co</a>
+      <nav className={`cv-nav${scrolled ? " scrolled" : ""}`}>
+        <a href="#" className="cv-logo" data-garrison-text="gym.name">
+          Curves<span>&</span>Co
+        </a>
         <ul className="cv-nav-links">
-          <li><a href="#classes">Classes</a></li>
-          <li><a href="#community">Community</a></li>
-          <li><a href="#pricing">Pricing</a></li>
+          <li>
+            <a href="#classes">Classes</a>
+          </li>
+          <li>
+            <a href="#community">Community</a>
+          </li>
+          <li>
+            <a href="#pricing">Pricing</a>
+          </li>
         </ul>
-        <button className="cv-nav-cta">Join the Movement</button>
+        <button className="cv-nav-cta" data-garrison-text="brand.hero_cta_text">
+          Join the Movement
+        </button>
       </nav>
 
       {/* HERO — video */}
-      <section className="cv-hero">
-        <video className="cv-hero-video" autoPlay muted loop playsInline poster="https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=1200&q=80">
-          <source src="https://www.pexels.com/download/video/3769120/?fps=25.0&h=1080&w=1920" type="video/mp4" />
+      <section className="cv-hero" data-garrison-component="book_class">
+        <video
+          className="cv-hero-video"
+          autoPlay
+          muted
+          loop
+          playsInline
+          poster="https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=1200&q=80"
+        >
+          <source
+            src="https://www.pexels.com/download/video/3769120/?fps=25.0&h=1080&w=1920"
+            type="video/mp4"
+          />
         </video>
         <div className="cv-hero-overlay" />
         <div className="cv-hero-content">
-          <div className="cv-hero-pill">Nashville's #1 Women's Studio</div>
-          <h1 data-cg-el="hero_headline_1" className="cv-hero-title">Strong is<br />the new<br /><em>beautiful.</em></h1>
-          <p data-cg-el="hero_subtitle" className="cv-hero-sub">A fitness community built for every body. HIIT, strength, dance, and more — in a space where you'll feel celebrated, not judged.</p>
+          <div className="cv-hero-pill" data-garrison-text="brand.tagline">
+            Nashville's #1 Women's Studio
+          </div>
+          <h1
+            data-cg-el="hero_headline_1"
+            data-garrison-text="brand.hero_headline"
+            className="cv-hero-title"
+          >
+            Strong is
+            <br />
+            the new
+            <br />
+            <em>beautiful.</em>
+          </h1>
+          <p
+            data-cg-el="hero_subtitle"
+            data-garrison-text="brand.tagline"
+            className="cv-hero-sub"
+          >
+            A fitness community built for every body. HIIT, strength, dance, and
+            more — in a space where you'll feel celebrated, not judged.
+          </p>
           <div className="cv-hero-actions">
-            <button data-cg-el="hero_cta_primary" className="cv-btn-primary">Start Free Week</button>
-            <button data-cg-el="hero_cta_secondary" className="cv-btn-ghost">See All Classes</button>
+            <button
+              data-cg-el="hero_cta_primary"
+              data-garrison-text="brand.hero_cta_text"
+              className="cv-btn-primary"
+            >
+              Start Free Week
+            </button>
+            <button data-cg-el="hero_cta_secondary" className="cv-btn-ghost">
+              See All Classes
+            </button>
           </div>
         </div>
       </section>
@@ -189,13 +244,28 @@ export default function CurvesPage() {
       </div>
 
       {/* CLASSES */}
-      <section className="cv-section" id="classes">
+      <section
+        className="cv-section"
+        id="classes"
+        data-garrison-component="classes_catalog"
+      >
         <p className="cv-eyebrow reveal">What We Offer</p>
-        <h2 className="cv-heading reveal" style={{ transitionDelay: '0.1s' }}>Find your<br /><em>favorite class.</em></h2>
-        <p className="cv-body reveal" style={{ transitionDelay: '0.2s' }}>Six formats, one studio — every class is designed to challenge you, delight you, and keep you coming back.</p>
+        <h2 className="cv-heading reveal" style={{ transitionDelay: "0.1s" }}>
+          Find your
+          <br />
+          <em>favorite class.</em>
+        </h2>
+        <p className="cv-body reveal" style={{ transitionDelay: "0.2s" }}>
+          Six formats, one studio — every class is designed to challenge you,
+          delight you, and keep you coming back.
+        </p>
         <div className="cv-classes">
           {d.classes.map((c, i) => (
-            <div key={c.name} className="cv-class reveal" style={{ transitionDelay: `${0.07 * i}s` }}>
+            <div
+              key={c.name}
+              className="cv-class reveal"
+              style={{ transitionDelay: `${0.07 * i}s` }}
+            >
               <div className="cv-class-icon">{c.icon}</div>
               <div className="cv-class-header">
                 <span className="cv-class-name">{c.name}</span>
@@ -214,11 +284,22 @@ export default function CurvesPage() {
       <div className="cv-section-tinted" id="community">
         <div className="cv-section-tinted-inner">
           <p className="cv-eyebrow reveal">More Than a Gym</p>
-          <h2 className="cv-heading reveal" style={{ transitionDelay: '0.1s' }}>A real<br /><em>community.</em></h2>
-          <p className="cv-body reveal" style={{ transitionDelay: '0.2s' }}>Membership is more than classes. It's being part of a group that shows up for each other — every single week.</p>
+          <h2 className="cv-heading reveal" style={{ transitionDelay: "0.1s" }}>
+            A real
+            <br />
+            <em>community.</em>
+          </h2>
+          <p className="cv-body reveal" style={{ transitionDelay: "0.2s" }}>
+            Membership is more than classes. It's being part of a group that
+            shows up for each other — every single week.
+          </p>
           <div className="cv-community">
             {d.community.map((c, i) => (
-              <div key={c.label} className="cv-comm-card reveal" style={{ transitionDelay: `${0.1 * i}s` }}>
+              <div
+                key={c.label}
+                className="cv-comm-card reveal"
+                style={{ transitionDelay: `${0.1 * i}s` }}
+              >
                 <div className="cv-comm-icon">{c.icon}</div>
                 <div className="cv-comm-label">{c.label}</div>
                 <div className="cv-comm-desc">{c.desc}</div>
@@ -229,39 +310,92 @@ export default function CurvesPage() {
       </div>
 
       {/* PRICING */}
-      <section className="cv-section" id="pricing">
+      <section
+        className="cv-section"
+        id="pricing"
+        data-garrison-component="pricing"
+      >
         <p className="cv-eyebrow reveal">Pricing</p>
-        <h2 className="cv-heading reveal" style={{ transitionDelay: '0.1s' }}>Flexible plans,<br /><em>real results.</em></h2>
+        <h2 className="cv-heading reveal" style={{ transitionDelay: "0.1s" }}>
+          Flexible plans,
+          <br />
+          <em>real results.</em>
+        </h2>
         <div className="cv-pricing">
           {d.pricing.map((p, i) => (
-            <div key={p.name} className={`cv-plan reveal ${p.highlight ? 'featured' : ''}`} style={{ transitionDelay: `${0.1 * i}s` }}>
+            <div
+              key={p.name}
+              className={`cv-plan reveal ${p.highlight ? "featured" : ""}`}
+              style={{ transitionDelay: `${0.1 * i}s` }}
+            >
               {p.highlight && <div className="cv-plan-badge">Most Popular</div>}
               <div className="cv-plan-name">{p.name}</div>
               <div className="cv-plan-price">{p.price}</div>
               <div className="cv-plan-period">{p.period}</div>
               <ul className="cv-plan-features">
-                {p.features.map((f) => <li key={f}>{f}</li>)}
+                {p.features.map((f) => (
+                  <li key={f}>{f}</li>
+                ))}
               </ul>
-              <button className={`cv-btn-plan ${p.highlight ? 'solid' : ''}`}>Get Started</button>
+              <button
+                className={`cv-btn-plan ${p.highlight ? "solid" : ""}`}
+                data-garrison-text="brand.buy_classes_cta"
+              >
+                Get Started
+              </button>
             </div>
           ))}
         </div>
       </section>
 
       {/* CTA */}
-      <div className="cv-cta">
-        <h2 className="cv-cta-title">Your first week.<br />On us.</h2>
-        <p className="cv-cta-sub">Come try any class — zero pressure, zero commitment. Just show up.</p>
-        <button className="cv-btn-white">Claim Free Week →</button>
+      <div className="cv-cta" data-garrison-component="lead_capture">
+        <h2
+          className="cv-cta-title"
+          data-garrison-text="brand.intro_offer.title"
+        >
+          Your first week.
+          <br />
+          On us.
+        </h2>
+        <p
+          className="cv-cta-sub"
+          data-garrison-text="brand.intro_offer.subtitle"
+        >
+          Come try any class — zero pressure, zero commitment. Just show up.
+        </p>
+        <button
+          className="cv-btn-white"
+          data-garrison-text="brand.intro_offer.cta"
+        >
+          Claim Free Week →
+        </button>
+      </div>
+
+      <div hidden aria-hidden="true">
+        <div data-garrison-widget="ai_agent" />
+        <div data-garrison-widget="class_schedule" />
+        <div data-garrison-widget="pricing" />
+        <div data-garrison-widget="classes_catalog" />
+        <div data-garrison-widget="lead_capture" />
+        <div data-garrison-widget="promo_banner" />
       </div>
 
       {/* FOOTER */}
-      <footer className="cv-footer">
+      <footer className="cv-footer" data-garrison-component="location_map">
         <div>
-          <div className="cv-footer-logo">Curves<span>&</span>Co</div>
-          <div className="cv-footer-info">{d.gym.address}<br />{d.gym.phone} · {d.gym.email}</div>
+          <div className="cv-footer-logo">
+            Curves<span>&</span>Co
+          </div>
+          <div className="cv-footer-info">
+            {d.gym.address}
+            <br />
+            {d.gym.phone} · {d.gym.email}
+          </div>
         </div>
-        <div className="cv-footer-copy">© {new Date().getFullYear()} {d.gym.name}. Powered by Garrison365.</div>
+        <div className="cv-footer-copy">
+          © {new Date().getFullYear()} {d.gym.name}. Powered by Garrison365.
+        </div>
       </footer>
     </>
   );
