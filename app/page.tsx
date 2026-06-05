@@ -165,13 +165,19 @@ export default function CurvesPage() {
         </a>
         <ul className="cv-nav-links">
           <li>
-            <a href="#classes">Classes</a>
+            <a href="#classes" data-garrison-text="nav.classes">
+              Classes
+            </a>
           </li>
           <li>
-            <a href="#community">Community</a>
+            <a href="#community" data-garrison-text="nav.community">
+              Community
+            </a>
           </li>
           <li>
-            <a href="#pricing">Pricing</a>
+            <a href="#pricing" data-garrison-text="nav.pricing">
+              Pricing
+            </a>
           </li>
         </ul>
         <button className="cv-nav-cta" data-garrison-text="brand.hero_cta_text">
@@ -226,7 +232,11 @@ export default function CurvesPage() {
             >
               Start Free Week
             </button>
-            <button data-cg-el="hero_cta_secondary" className="cv-btn-ghost">
+            <button
+              data-cg-el="hero_cta_secondary"
+              className="cv-btn-ghost"
+              data-garrison-text="brand.secondary_cta_text"
+            >
               See All Classes
             </button>
           </div>
@@ -235,10 +245,20 @@ export default function CurvesPage() {
 
       {/* STATS */}
       <div className="cv-stats">
-        {d.stats.map((s) => (
+        {d.stats.map((s, i) => (
           <div key={s.label} className="cv-stat">
-            <div className="cv-stat-value">{s.value}</div>
-            <div className="cv-stat-label">{s.label}</div>
+            <div
+              className="cv-stat-value"
+              data-garrison-text={`stats.${i}.value`}
+            >
+              {s.value}
+            </div>
+            <div
+              className="cv-stat-label"
+              data-garrison-text={`stats.${i}.label`}
+            >
+              {s.label}
+            </div>
           </div>
         ))}
       </div>
@@ -249,13 +269,26 @@ export default function CurvesPage() {
         id="classes"
         data-garrison-component="classes_catalog"
       >
-        <p className="cv-eyebrow reveal">What We Offer</p>
-        <h2 className="cv-heading reveal" style={{ transitionDelay: "0.1s" }}>
+        <p
+          className="cv-eyebrow reveal"
+          data-garrison-text="sections.classes_catalog.kicker"
+        >
+          What We Offer
+        </p>
+        <h2
+          className="cv-heading reveal"
+          data-garrison-text="sections.classes_catalog.title"
+          style={{ transitionDelay: "0.1s" }}
+        >
           Find your
           <br />
           <em>favorite class.</em>
         </h2>
-        <p className="cv-body reveal" style={{ transitionDelay: "0.2s" }}>
+        <p
+          className="cv-body reveal"
+          data-garrison-text="sections.classes_catalog.subtitle"
+          style={{ transitionDelay: "0.2s" }}
+        >
           Six formats, one studio — every class is designed to challenge you,
           delight you, and keep you coming back.
         </p>
@@ -268,13 +301,33 @@ export default function CurvesPage() {
             >
               <div className="cv-class-icon">{c.icon}</div>
               <div className="cv-class-header">
-                <span className="cv-class-name">{c.name}</span>
+                <span
+                  className="cv-class-name"
+                  data-garrison-text={`sections.classes_catalog.items.${i}.name`}
+                >
+                  {c.name}
+                </span>
               </div>
               <div className="cv-class-badges">
-                <span className="cv-badge">{c.duration}</span>
-                <span className="cv-badge">{c.level}</span>
+                <span
+                  className="cv-badge"
+                  data-garrison-text={`sections.classes_catalog.items.${i}.duration`}
+                >
+                  {c.duration}
+                </span>
+                <span
+                  className="cv-badge"
+                  data-garrison-text={`sections.classes_catalog.items.${i}.level`}
+                >
+                  {c.level}
+                </span>
               </div>
-              <p className="cv-class-desc">{c.desc}</p>
+              <p
+                className="cv-class-desc"
+                data-garrison-text={`sections.classes_catalog.items.${i}.description`}
+              >
+                {c.desc}
+              </p>
             </div>
           ))}
         </div>
@@ -283,13 +336,26 @@ export default function CurvesPage() {
       {/* COMMUNITY */}
       <div className="cv-section-tinted" id="community">
         <div className="cv-section-tinted-inner">
-          <p className="cv-eyebrow reveal">More Than a Gym</p>
-          <h2 className="cv-heading reveal" style={{ transitionDelay: "0.1s" }}>
+          <p
+            className="cv-eyebrow reveal"
+            data-garrison-text="sections.community.kicker"
+          >
+            More Than a Gym
+          </p>
+          <h2
+            className="cv-heading reveal"
+            data-garrison-text="sections.community.title"
+            style={{ transitionDelay: "0.1s" }}
+          >
             A real
             <br />
             <em>community.</em>
           </h2>
-          <p className="cv-body reveal" style={{ transitionDelay: "0.2s" }}>
+          <p
+            className="cv-body reveal"
+            data-garrison-text="sections.community.subtitle"
+            style={{ transitionDelay: "0.2s" }}
+          >
             Membership is more than classes. It's being part of a group that
             shows up for each other — every single week.
           </p>
@@ -301,8 +367,18 @@ export default function CurvesPage() {
                 style={{ transitionDelay: `${0.1 * i}s` }}
               >
                 <div className="cv-comm-icon">{c.icon}</div>
-                <div className="cv-comm-label">{c.label}</div>
-                <div className="cv-comm-desc">{c.desc}</div>
+                <div
+                  className="cv-comm-label"
+                  data-garrison-text={`sections.community.items.${i}.label`}
+                >
+                  {c.label}
+                </div>
+                <div
+                  className="cv-comm-desc"
+                  data-garrison-text={`sections.community.items.${i}.description`}
+                >
+                  {c.desc}
+                </div>
               </div>
             ))}
           </div>
@@ -315,8 +391,17 @@ export default function CurvesPage() {
         id="pricing"
         data-garrison-component="pricing"
       >
-        <p className="cv-eyebrow reveal">Pricing</p>
-        <h2 className="cv-heading reveal" style={{ transitionDelay: "0.1s" }}>
+        <p
+          className="cv-eyebrow reveal"
+          data-garrison-text="sections.pricing.kicker"
+        >
+          Pricing
+        </p>
+        <h2
+          className="cv-heading reveal"
+          data-garrison-text="sections.pricing.title"
+          style={{ transitionDelay: "0.1s" }}
+        >
           Flexible plans,
           <br />
           <em>real results.</em>
@@ -328,13 +413,40 @@ export default function CurvesPage() {
               className={`cv-plan reveal ${p.highlight ? "featured" : ""}`}
               style={{ transitionDelay: `${0.1 * i}s` }}
             >
-              {p.highlight && <div className="cv-plan-badge">Most Popular</div>}
-              <div className="cv-plan-name">{p.name}</div>
-              <div className="cv-plan-price">{p.price}</div>
-              <div className="cv-plan-period">{p.period}</div>
+              {p.highlight && (
+                <div
+                  className="cv-plan-badge"
+                  data-garrison-text={`sections.pricing.items.${i}.badge`}
+                >
+                  Most Popular
+                </div>
+              )}
+              <div
+                className="cv-plan-name"
+                data-garrison-text={`sections.pricing.items.${i}.name`}
+              >
+                {p.name}
+              </div>
+              <div
+                className="cv-plan-price"
+                data-garrison-text={`sections.pricing.items.${i}.price`}
+              >
+                {p.price}
+              </div>
+              <div
+                className="cv-plan-period"
+                data-garrison-text={`sections.pricing.items.${i}.period`}
+              >
+                {p.period}
+              </div>
               <ul className="cv-plan-features">
-                {p.features.map((f) => (
-                  <li key={f}>{f}</li>
+                {p.features.map((f, j) => (
+                  <li
+                    key={f}
+                    data-garrison-text={`sections.pricing.items.${i}.features.${j}`}
+                  >
+                    {f}
+                  </li>
                 ))}
               </ul>
               <button
@@ -387,13 +499,13 @@ export default function CurvesPage() {
           <div className="cv-footer-logo">
             Curves<span>&</span>Co
           </div>
-          <div className="cv-footer-info">
+          <div className="cv-footer-info" data-garrison-text="footer.contact">
             {d.gym.address}
             <br />
             {d.gym.phone} · {d.gym.email}
           </div>
         </div>
-        <div className="cv-footer-copy">
+        <div className="cv-footer-copy" data-garrison-text="footer.copyright">
           © {new Date().getFullYear()} {d.gym.name}. Powered by Garrison365.
         </div>
       </footer>
