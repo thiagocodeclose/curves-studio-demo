@@ -3,6 +3,14 @@
 import { useEffect, useState } from "react";
 import { siteData } from "@/lib/site-data";
 
+function extractItems(obj: any): any[] | null {
+  if (!obj) return null;
+  if (Array.isArray(obj)) return obj.length > 0 ? obj : null;
+  const keys = Object.keys(obj);
+  if (keys.length === 0) return null;
+  return keys.sort((a, b) => Number(a) - Number(b)).map((k) => obj[k]);
+}
+
 const css = `
   :root {
     --cv-bg: #FDF6F0;
@@ -146,14 +154,34 @@ function useReveal() {
 
 export default function CurvesPage() {
   const [scrolled, setScrolled] = useState(false);
+  const [liveContent, setLiveContent] = useState<any>(null);
   useReveal();
-  const d = siteData;
 
   useEffect(() => {
     const fn = () => setScrolled(window.scrollY > 50);
     window.addEventListener("scroll", fn);
     return () => window.removeEventListener("scroll", fn);
   }, []);
+
+  useEffect(() => {
+    const onContent = (e: Event) => {
+      const sc = (e as CustomEvent).detail;
+      if (sc) setLiveContent(sc);
+    };
+    window.addEventListener("garrison365:content", onContent);
+    return () => window.removeEventListener("garrison365:content", onContent);
+  }, []);
+
+  // Merge live content from builder over static defaults
+  const scClasses = extractItems(liveContent?.sections?.classes_catalog?.items) ||
+    extractItems(liveContent?.classes_catalog);
+  const scPricing = extractItems(liveContent?.sections?.pricing?.items) ||
+    extractItems(liveContent?.pricing);
+  const d = {
+    ...siteData,
+    classes: scClasses || siteData.classes,
+    pricing: scPricing || siteData.pricing,
+  };
 
   return (
     <>
